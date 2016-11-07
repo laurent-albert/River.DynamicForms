@@ -43,7 +43,7 @@ namespace River.DynamicForms.Drivers
                         Name: "FilePath",
                         Title: "FilePath",
                         Classes: new[] { "text", "medium", "tokenized" },
-                        Description: T("The path for the uploaded file (e.g. c:\\media\\).")));
+                        Description: T("The path for the uploaded file inside Media/Default  (e.g. uploads/files). note: uploads/test should be created and existes")));
                 return form;
             });
 
