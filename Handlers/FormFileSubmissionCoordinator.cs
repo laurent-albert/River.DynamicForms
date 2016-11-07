@@ -25,13 +25,14 @@ namespace River.DynamicForms.Handlers
                     return;
 
                 var postedFile = ((System.Web.HttpPostedFileBase[])(postedFileValue.RawValue))[0];
+                string mediaPath = System.Web.Hosting.HostingEnvironment.MapPath("~/Media/Default") +"/";
 
-                var path = Path.Combine(fileFieldElement.FilePath, Path.GetFileName(postedFile.FileName));
+                var path = Path.Combine(mediaPath + fileFieldElement.FilePath.TrimEnd('/') + "/", Path.GetFileName(postedFile.FileName));
 
                 if (fileFieldElement.GenerateUnique)
                 {
                     int count = 1;
-                    var pathPattern = Path.Combine(fileFieldElement.FilePath, string.Format("{0}_{{0}}{1}", Path.GetFileNameWithoutExtension(postedFile.FileName), Path.GetExtension(postedFile.FileName)));
+                    var pathPattern = Path.Combine(mediaPath + fileFieldElement.FilePath.TrimEnd('/') + "/", string.Format("{0}_{{0}}{1}", Path.GetFileNameWithoutExtension(postedFile.FileName), Path.GetExtension(postedFile.FileName)));
                     while (File.Exists(string.Format(pathPattern, count)))
                     {
                         count++;
